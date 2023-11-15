@@ -38,9 +38,11 @@ const spec = Array.from(Array(15)).map((e, i) => i + 33);
 const special = spec.map((s) => String.fromCharCode(s));
 console.log(special);
 
+var generatedPassword = [];
+
 // I now have my character set stored in 4 arrays corresponding to their types: upper, lower, num, spec
 
-var length;
+var length = 0;
 var useLower;
 var useUpper;
 var useNum;
@@ -61,11 +63,18 @@ var promptUpper = function() {
 }
 
 var promptLower = function() {
+  var y = true;
+  var n = false;
   useLower = prompt("Do you want your password to include lowercase letters? y or n");
   // TO DO - check if valid response
-  console.log(useLower);
-  promptUpper();
+    if (useLower === "y" || useLower ==="n" || useLower === "N" || useLower === "Y") {
+      console.log(useLower);
+      promptUpper();
+    } else {
+      promptLower();
+    };
 }
+  
 
 var promptSpec = function() {
   useSpec = prompt("Do you want your password to include special characters? y or n");
@@ -73,15 +82,34 @@ var promptSpec = function() {
   console.log(useSpec);
 }
 
-var lengthOfP = function() {
+var passwordLength = function() {
   length = prompt("How many characters long between 8 - 128 do you want your password to be?");
   // TO DO - check if valid response
   console.log(length);
-  promptLower();
 }
 
 function generatePassword() {
-  var randomIndex = Math.floor(Math.random()*(length));
-  lengthOfP();
-  return randomIndex;
+  displayPrompt();
+  // var randomIndex = Math.floor(Math.random()*(length));
+  // return randomIndex;
+  
+  for (let i = 0; i<length; i++) {
+    var x = function() {
+      generatedPassword.push(lowerCase[Math.floor(Math.random()*length)]);
+    };
+    x();
+  };
+  return generatedPassword.join("");
 }
+
+// Step 1 - First prompt
+
+function displayPrompt() {
+  passwordLength();
+    if (length < 129 && length > 7) {
+      promptLower();
+    } else {
+      passwordLength();
+    };      
+  
+};
