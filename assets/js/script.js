@@ -40,8 +40,9 @@ var useSpec;
 
 function generatePassword() {
   randomizedArray = []; // reset the randomizedArray variable for repeat calls
+  arrays = [];          // reset arrays
   passwordLength();
-  console.log("password being generated");
+  // console.log("password being generated");
   for (var i = 0; i < chosenLength; i++) {
     var randomIndex = Math.floor(Math.random() * arrays.length);
     randomizedArray.push(
@@ -69,17 +70,19 @@ var passwordLength = function () {
   }
 };
 
-var promptNum = function () {
-  useNum = prompt("Do you want your password to include numbers? y or n");
-  if (useNum === "y" || useNum === "Y") {
-    arrays.push(number);
-    promptSpec();
-    console.log("numbers yes");
-  } else if (useNum === "n" || useNum === "N") {
-    console.log("numbers no");
-    promptSpec();
+var promptLower = function () {
+  useLower = prompt(
+    "Do you want your password to include lowercase letters? y or n"
+  );
+  if (useLower === "y" || useLower === "Y") {
+    arrays.push(lowerCase);
+    promptUpper();
+    console.log("lower yes");
+  } else if (useLower === "n" || useLower === "N") {
+    promptUpper();
+    console.log("lower no");
   } else {
-    promptNum();
+    promptLower();
   }
 };
 
@@ -99,19 +102,17 @@ var promptUpper = function () {
   }
 };
 
-var promptLower = function () {
-  useLower = prompt(
-    "Do you want your password to include lowercase letters? y or n"
-  );
-  if (useLower === "y" || useLower === "Y") {
-    arrays.push(lowerCase);
-    promptUpper();
-    console.log("lower yes");
-  } else if (useLower === "n" || useLower === "N") {
-    promptUpper();
-    console.log("lower no");
+var promptNum = function () {
+  useNum = prompt("Do you want your password to include numbers? y or n");
+  if (useNum === "y" || useNum === "Y") {
+    arrays.push(number);
+    promptSpec();
+    console.log("numbers yes");
+  } else if (useNum === "n" || useNum === "N") {
+    console.log("numbers no");
+    promptSpec();
   } else {
-    promptLower();
+    promptNum();
   }
 };
 
