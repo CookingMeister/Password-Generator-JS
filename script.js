@@ -1,115 +1,134 @@
-// Assignment code here
-  
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
-
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-
+// 
 // My code starts here
+// 
 
-const lower = Array.from(Array(26)).map((e, i) => i + 97);
-const lowerCase = lower.map((a) => String.fromCharCode(a));
-console.log(lowerCase);
+// My character set stored in 4 arrays corresponding to their ASCII types:
+// lowercase, uppercase, number, special.
 
-const upper = Array.from(Array(26)).map((e, i) => i + 65);
-const upperCase = upper.map((A) => String.fromCharCode(A));
-console.log(upperCase);
+var lower = Array.from(Array(26)).map((e, i) => i + 97);
+var lowerCase = lower.map((a) => String.fromCharCode(a));
 
-const numeric = Array.from(Array(10)).map((e, i) => i + 48);
-const number = numeric.map((n) => String.fromCharCode(n));
-console.log(number);
+var upper = Array.from(Array(26)).map((e, i) => i + 65);
+var upperCase = upper.map((A) => String.fromCharCode(A));
 
-const spec = Array.from(Array(15)).map((e, i) => i + 33);
-const special = spec.map((s) => String.fromCharCode(s));
-console.log(special);
+var numeric = Array.from(Array(10)).map((e, i) => i + 48);
+var number = numeric.map((n) => String.fromCharCode(n));
 
-var generatedPassword = [];
+var spec = Array.from(Array(15)).map((e, i) => i + 33);
+var special = spec.map((s) => String.fromCharCode(s));
 
-// I now have my character set stored in 4 arrays corresponding to their types: upper, lower, num, spec
+var arrays = [];
+var randomizedArray = [];
 
-var length = 0;
+
+var chosenLength;
 var useLower;
 var useUpper;
 var useNum;
 var useSpec;
 
-var promptNum = function() {
-  useNum = prompt("Do you want your password to include numbers? y or n");
-  // TO DO - check if valid response
-  console.log(useNum);
-  promptSpec();
-}
-
-var promptUpper = function() {
-  useUpper = prompt("Do you want your password to include capital letters? y or n");
-  // TO DO - check if valid response
-  console.log(useUpper);
-  promptNum();
-}
-
-var promptLower = function() {
-  var y = true;
-  var n = false;
-  useLower = prompt("Do you want your password to include lowercase letters? y or n");
-  // TO DO - check if valid response
-    if (useLower === "y" || useLower ==="n" || useLower === "N" || useLower === "Y") {
-      console.log(useLower);
-      promptUpper();
-    } else {
-      promptLower();
-    };
-}
-  
-
-var promptSpec = function() {
-  useSpec = prompt("Do you want your password to include special characters? y or n");
-  // TO DO - check if valid response
-  console.log(useSpec);
-}
-
-var passwordLength = function() {
-  length = prompt("How many characters long between 8 - 128 do you want your password to be?");
-  // TO DO - check if valid response
-  console.log(length);
-}
+// Generates a randomized password from an array containing up to
+// four character type arrays and puts it in a new array.
 
 function generatePassword() {
-  displayPrompt();
-  // var randomIndex = Math.floor(Math.random()*(length));
-  // return randomIndex;
-  
-  for (let i = 0; i<length; i++) {
-    var x = function() {
-      generatedPassword.push(lowerCase[Math.floor(Math.random()*length)]);
-    };
-    x();
-  };
-  return generatedPassword.join("");
+  passwordLength();
+  console.log("password being generated");
+  for (var i = 0; i < chosenLength; i++) {
+    var randomIndex = Math.floor(Math.random() * arrays.length);
+    randomizedArray.push(
+      arrays[randomIndex][
+        Math.floor(Math.random() * arrays[randomIndex].length)
+      ]
+    );
+  }
+  return randomizedArray.join("");
 }
 
-// Step 1 - First prompt
+// Prompts for password length, and types of characters to include.
+// If answers are valid user is prompted with next question.
+// If answers are invalid user is prompted again until answer is valid.
 
-function displayPrompt() {
-  passwordLength();
-    if (length < 129 && length > 7) {
-      promptLower();
-    } else {
-      passwordLength();
-    };      
-  
+var passwordLength = function () {
+  chosenLength = prompt(
+    "How many characters long between 8 - 128 do you want your password to be?"
+  );
+  if (chosenLength < 129 && chosenLength > 7) {
+    promptLower();
+  } else {
+    passwordLength();
+  }
+};
+
+var promptNum = function () {
+  useNum = prompt("Do you want your password to include numbers? y or n");
+  if (useNum === "y" || useNum === "Y") {
+    arrays.push(number);
+    promptSpec();
+    console.log("numbers yes");
+  } else if (useNum === "n" || useNum === "N") {
+    console.log("numbers no");
+    promptSpec();
+  } else {
+    promptNum();
+  }
+};
+
+var promptUpper = function () {
+  useUpper = prompt(
+    "Do you want your password to include capital letters? y or n"
+  );
+  if (useUpper === "y" || useUpper === "Y") {
+    arrays.push(upperCase);
+    promptNum();
+    console.log("Caps yes");
+  } else if (useUpper === "n" || useUpper === "N") {
+    promptNum();
+    console.log("Caps no");
+  } else {
+    promptUpper();
+  }
+};
+
+var promptLower = function () {
+  useLower = prompt(
+    "Do you want your password to include lowercase letters? y or n"
+  );
+  if (useLower === "y" || useLower === "Y") {
+    arrays.push(lowerCase);
+    promptUpper();
+    console.log("lower yes");
+  } else if (useLower === "n" || useLower === "N") {
+    promptUpper();
+    console.log("lower no");
+  } else {
+    promptLower();
+  }
+};
+
+var promptSpec = function () {
+  useSpec = prompt(
+    "Do you want your password to include special characters? y or n"
+  );
+  if (useSpec === "y" || useSpec === "Y") {
+    arrays.push(special);
+    console.log("spec yes");
+  } else if (useSpec === "n" || useSpec === "N") {
+    console.log("spec no");
+  } else {
+    promptSpec();
+  }
+  console.log("prompts done");
 };
