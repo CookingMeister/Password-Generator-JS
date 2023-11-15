@@ -1,7 +1,8 @@
 # Password-Generator-JS
-Random Password Generator Module 03
+*Random Password Generator Module 03 Assignment
 
 ## Usage
+
 This random password generator prompts the user for length of password, and whether to include lowercase, uppercase, numerical and / or special characters, then creates one based on these criteria. Answers are validated in order to progress through the prompts.
 
 ## User Story
@@ -34,11 +35,11 @@ THEN the password is either displayed in an alert or written to the page
 
 ## Mock-Up
 
-The following image shows the web application's appearance and functionality:
+*The following image shows the web application's appearance and functionality:
 
-![The Password Generator application displays a red button to "Generate Password".](/assets/img/03-javascript-homework-demo.png)
+![The Password Generator application displays a red button to "Generate Password".](./assets/img/03-javascript-homework-demo.png)
 
-Here is a link to the live application: ![]
+*Here is a link to the live application: ![White background, text box and a red generate password button](...)
 
 ## Credits
 
@@ -46,4 +47,4 @@ Here is a link to the live application: ![]
 
 ## License
 
-See attached license file.
+*Please see attached license file.
