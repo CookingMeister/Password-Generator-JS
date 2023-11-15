@@ -15,24 +15,20 @@ generateBtn.addEventListener("click", writePassword);
 // My code starts here
 //
 
-// My character set stored in 4 arrays corresponding to their ASCII types:
+// My character set stored in 4 arrays corresponding to the ASCII types:
 // lowercase, uppercase, number, special.
 
-var lower = Array.from(Array(26)).map((e, i) => i + 97);
-var lowerCase = lower.map((a) => String.fromCharCode(a));
-
-var upper = Array.from(Array(26)).map((e, i) => i + 65);
-var upperCase = upper.map((A) => String.fromCharCode(A));
-
-var numeric = Array.from(Array(10)).map((e, i) => i + 48);
-var number = numeric.map((n) => String.fromCharCode(n));
-
+var low = Array.from(Array(26)).map((e, i) => i + 97);
+var lowerCase = low.map((a) => String.fromCharCode(a));
+var up = Array.from(Array(26)).map((e, i) => i + 65);
+var upperCase = up.map((A) => String.fromCharCode(A));
+var num = Array.from(Array(10)).map((e, i) => i + 48);
+var number = num.map((n) => String.fromCharCode(n));
 var spec = Array.from(Array(15)).map((e, i) => i + 33);
 var special = spec.map((s) => String.fromCharCode(s));
 
 var arrays = [];
 var randomizedArray = [];
-
 var chosenLength;
 var useLower;
 var useUpper;
@@ -43,6 +39,7 @@ var useSpec;
 // four character type arrays and puts it in a new array.
 
 function generatePassword() {
+  randomizedArray = []; // reset the randomizedArray variable for repeat calls
   passwordLength();
   console.log("password being generated");
   for (var i = 0; i < chosenLength; i++) {
