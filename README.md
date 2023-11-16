@@ -39,7 +39,7 @@ THEN the password is either displayed in an alert or written to the page
 
 ![The Password Generator application displays a red button to "Generate Password".](./assets/img/03-javascript-homework-demo.png)
 
-* Here is a link to the live application: ![White background, text box and a red generate password button](...)
+* Here is a link to the live application: [Random Password Generator](https://cookingmeister.github.io/Password-Generator-JS/)
 
 ## Credits
 
