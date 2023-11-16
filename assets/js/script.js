@@ -40,9 +40,9 @@ var useSpec;
 
 function generatePassword() {
   randomizedArray = []; // reset the randomizedArray variable for repeat calls
-  arrays = [];          // reset arrays
+  arrays = []; // reset arrays
   passwordLength();
-  // console.log("password being generated");
+  console.log("password being generated");
   for (var i = 0; i < chosenLength; i++) {
     var randomIndex = Math.floor(Math.random() * arrays.length);
     randomizedArray.push(
@@ -129,4 +129,11 @@ var promptSpec = function () {
     promptSpec();
   }
   console.log("prompts done");
+  // validates if any characters for password have been chosen at all.
+  if (arrays.length === 0 || arrays.length === undefined) {
+    passwordLength();
+    console.log("Chars haven't been chosen");
+  } else {
+    console.log("Chars have been chosen");
+  }
 };

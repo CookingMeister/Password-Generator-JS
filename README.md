@@ -1,5 +1,5 @@
 # Password-Generator-JS
-*Random Password Generator Module 03 Assignment
+* Random Password Generator Module 03 Assignment
 
 ## Usage
 
@@ -35,16 +35,16 @@ THEN the password is either displayed in an alert or written to the page
 
 ## Mock-Up
 
-*The following image shows the web application's appearance and functionality:
+* The following image shows the web application's appearance and functionality:
 
 ![The Password Generator application displays a red button to "Generate Password".](./assets/img/03-javascript-homework-demo.png)
 
-*Here is a link to the live application: ![White background, text box and a red generate password button](...)
+* Here is a link to the live application: ![White background, text box and a red generate password button](...)
 
 ## Credits
 
->I used MDN Web Docs, W3Schools and freeCodeCamp resources as well as some general Google searches for Javascript functionality and proof of concept testing. The function that generates an array of ascii characters and then converts it to string values is not my own. It is based upon found code probably from Stack Overflow, although I have not been able to find it again to properly cite ownership.
+>I used MDN Web Docs, W3Schools and freeCodeCamp resources as well as some general Google searches for Javascript functionality and proof of concept testing. The function that generates an array of ascii numbers and then converts it to string character values is not my own. It is based upon found code, although I have not been able to find it again to properly cite ownership.
 
 ## License
 
-*Please see attached license file.
+* Please see attached license file.
